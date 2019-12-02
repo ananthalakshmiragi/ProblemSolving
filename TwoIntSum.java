@@ -15,19 +15,16 @@ public class TwoIntSum{
      }
      
      private static List<List<Integer>> findSumArr(ArrayList<Integer> arrInp, int sumInp) {
-         int tmpDiff = 0, i=0, j=1;
+         int tmpDiff = 0, i=0;
          ArrayList<List<Integer>> resultArr = new ArrayList<List<Integer>>();
          
+         arrInp.sort(null);
          while(i < arrInp.size()) {
-        	 j=1;
-             tmpDiff = Math.abs(sumInp - arrInp.get(i));
-              while(j < arrInp.size()) {
-                 if (tmpDiff == arrInp.get(j)) {
-                     resultArr.add(new ArrayList<Integer>(Arrays.asList(arrInp.get(i), arrInp.get(j))));
-                     arrInp.remove(i);
-                     arrInp.remove(j-1);
-                 }
-                 j++;
+             tmpDiff = sumInp - arrInp.get(i);
+              if (arrInp.contains(tmpDiff)) {
+                 resultArr.add(new ArrayList<Integer>(Arrays.asList(arrInp.get(i), tmpDiff)));
+                 arrInp.remove(i);
+                 arrInp.remove(String.valueOf(tmpDiff));
              }
              i++;
          }
